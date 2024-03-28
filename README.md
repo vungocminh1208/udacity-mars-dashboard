@@ -1,6 +1,6 @@
 # Functional Programming with Javascript 
 
-## Student Instructions
+## Instructions
 
 ### Big Picture
 
@@ -14,7 +14,7 @@ We have supplied some of the foundational code for you. So follow these steps to
 
  - [ ] To clone the repo, remember to clone just the starter branch:
 
-```git clone --single-branch --branch starter <repo-name>```
+```git clone https://github.com/vungocminh1208/udacity-mars-dashboard.git```
 
  - [ ] For this project we are using yarn as our package manager, so to install your depencies run:
 

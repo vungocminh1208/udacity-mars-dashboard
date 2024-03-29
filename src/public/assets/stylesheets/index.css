@@ -3,12 +3,99 @@
 body {
   display: flex;
   flex-direction: column;
-  font-family: Arial;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
+  background: url('../images/background.png') no-repeat fixed center;
+  background-size: cover;
 }
 
 header {
   /* header styles */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E0E0E0;
+  border-radius: 10px;
+}
+
+/*-----------------------Common lib------------------------------------ */
+
+.m-5 {
+  margin: 2rem 2rem 2rem 2rem;
+}
+
+.m-1 {
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.p-5 {
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+.p-1 {
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.text-white {
+  color: white;
+}
+
+/*-----------------------End Common lib------------------------------------ */
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.rover {
+  font-size: 2rem;
+  color: #000;
+  transition: 0.2s ease-in-out;
+}
+
+.rover:hover {
+  background: #A0A0A0;
+  border-radius: 2rem;
+  color: #fff;
+}
+
+#rover-info {
+  width: 75%;
+}
+
+#rover-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.rover-general {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(145, 146, 147, 0.5);
+}
+
+.rover-general img{
+  max-width: 500px;
+  max-height: 250px;
+}
+
+#recent-photo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.photo-info {
+  background: rgba(145, 146, 147, 0.5);
+}
+
+.photo-info img {
+  width: 100%;
+  max-width: 300px;
+  max-height: 150px;
 }
 
 main {

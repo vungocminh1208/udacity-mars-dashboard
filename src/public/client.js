@@ -1,11 +1,16 @@
 let store = {
     apod: '',
     rovers: ['Curiosity', 'Opportunity', 'Spirit'],
-    photos: []
+    photos: [],
+    selectedRover: 'Curiosity',
+    roverInfo: {}
 }
 
 // add our markup to the page
 const root = document.getElementById('root')
+const onChangeRover = (roverName) => {
+    updateStore(store, {selectedRover: roverName.toLowerCase()})
+}
 
 const updateStore = (store, newState) => {
     store = Object.assign(store, newState)
@@ -19,16 +24,18 @@ const render = async (root, state) => {
 
 // create content
 const App = (state) => {
-    let { apod, rovers, photos } = state
+    let { apod, rovers, photos, selectedRover, roverInfo } = state
 
     return `
-        <header></header>
-        <main>
-            <section>
-                ${ImageOfTheDay(apod)}
+        <header>
+            ${DisplayRoverNav(rovers)}
+        </header>
+        <main id="rover-main">
+            <section id="rover-info" class="m-5 text-white">
+                ${DisplayRoverInfo(selectedRover, roverInfo)}
             </section>
-            <section>
-                ${DisplayRover(rovers[0], photos)}
+            <section id="recent-photo" class="text-white">
+                ${DisplayLatestPhotos(selectedRover, photos)}
             </section>
         </main>
         <footer></footer>
@@ -43,17 +50,6 @@ window.addEventListener('load', () => {
 // ------------------------------------------------------  COMPONENTS
 
 // Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
-// const Greeting = (name) => {
-//     if (name) {
-//         return `
-//             <h1>Welcome, ${name}!</h1>
-//         `
-//     }
-
-//     return `
-//         <h1>Hello!</h1>
-//     `
-// }
 
 // Example of a pure function that renders infomation requested from the backend
 const ImageOfTheDay = (apod) => {
@@ -79,17 +75,52 @@ const ImageOfTheDay = (apod) => {
     }
 }
 
-const DisplayRover = (roverName, photos) => {
-    if (photos.length === 0) {
-        getRovers(roverName)
-    } 
+//display rover nav bar
+const DisplayRoverNav = (rovers) => {
+        return (`
+        ${rovers.map(e => (`
+            <div id="${e}" class="m-5 p-1 cursor-pointer rover" onClick="onChangeRover(id)">${e}</div>
+            `))}
+        `)
+}
+
+//display general info about rover
+const DisplayRoverInfo = (roverName, roverInfo) => {
+    console.log(roverName)
+    const isInfoTheSameRover = roverInfo?.name === roverName
+    if (!isInfoTheSameRover) {
+        getRoverInfo(roverName.toLowerCase())
+    }
+
+    return(`
+    <div class="rover-general">
+        <p>${roverInfo.name}</p>
+        <img src="./assets/images/${roverInfo.name}.jpg" alt="">
+        <div>
+            <p>launch date: ${roverInfo.launch_date}</p>
+            <p>landing date: ${roverInfo.landing_date}</p>
+            <p>status: ${roverInfo.status}</p>
+        </div>
+    </div>
+    `)
+}
+
+//display item of photos
+const DisplayLatestPhotos = (roverName, photos) => {
+    const firstElement = photos[0]
+    const isPhotosOfSameRover = firstElement?.rover.name === roverName
+    if (!isPhotosOfSameRover) {
+        getLatestPhotos(roverName.toLowerCase())
+    }
     return (`
-    ${photos.map((photo, i) => (`<div>
-            <p>Picture number ${i+1}</p>
-            <p>id: ${photo.id}</p>
-            <img src="${photo.img_src}" alt="image here"/>
-        </div>`))
-    }`)
+    ${photos.map((photo) => (`
+        <div class="photo-info p-1 m-1">
+            <img src="${photo.img_src}" alt="">
+            <p>From: ${photo.camera.full_name}</p>
+            <p>Earth date: ${photo.earth_date}</p>
+        </div>
+        `))}
+    `)
 }
 
 // ------------------------------------------------------  API CALLS
@@ -103,8 +134,18 @@ const getImageOfTheDay = (state) => {
         .then(apod => updateStore(store, { apod }))
 }
 
-const getRovers = (roverName) => {
-    fetch(`http://localhost:3000/rovers/${roverName}`)
+//get rover info
+const getRoverInfo = (roverName) => {
+    fetch(`http://localhost:3000/rover-info/${roverName}`)
         .then(res => res.json())
-        .then(data => updateStore(store, {photos: [...data.photos]}))
+        .then(data => updateStore(store, {roverInfo: data.rover}))
 }
+
+//get latest photos of each rover
+const getLatestPhotos = (roverName) => {
+    fetch(`http://localhost:3000/latest-photos/${roverName}`)
+        .then(res => res.json())
+        .then(data => updateStore(store, {photos: data.latest_photos}))
+}
+
+//--------------------------------support----------------------

@@ -9,7 +9,7 @@ let store = {
 // add our markup to the page
 const root = document.getElementById('root')
 const onChangeRover = (roverName) => {
-    updateStore(store, {selectedRover: roverName.toLowerCase()})
+    updateStore(store, {selectedRover: roverName})
 }
 
 const updateStore = (store, newState) => {
@@ -28,7 +28,7 @@ const App = (state) => {
 
     return `
         <header>
-            ${DisplayRoverNav(rovers)}
+            ${DisplayRoverNav(rovers, selectedRover)}
         </header>
         <main id="rover-main">
             <section id="rover-info" class="m-5 text-white">
@@ -76,17 +76,16 @@ const ImageOfTheDay = (apod) => {
 }
 
 //display rover nav bar
-const DisplayRoverNav = (rovers) => {
+const DisplayRoverNav = (rovers, selectedRover) => {
         return (`
         ${rovers.map(e => (`
-            <div id="${e}" class="m-5 p-1 cursor-pointer rover" onClick="onChangeRover(id)">${e}</div>
+            <div id="${e}" class="m-5 p-1 cursor-pointer rover ${selectedRover === e ? 'selected' : ''}" onClick="onChangeRover(id)">${e}</div>
             `))}
         `)
 }
 
 //display general info about rover
 const DisplayRoverInfo = (roverName, roverInfo) => {
-    console.log(roverName)
     const isInfoTheSameRover = roverInfo?.name === roverName
     if (!isInfoTheSameRover) {
         getRoverInfo(roverName.toLowerCase())

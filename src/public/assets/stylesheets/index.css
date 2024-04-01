@@ -58,6 +58,12 @@ header {
   color: #fff;
 }
 
+.selected {
+  background: #A0A0A0;
+  border-radius: 2rem;
+  color: #fff;
+}
+
 #rover-info {
   width: 75%;
 }

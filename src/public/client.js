@@ -12,6 +12,38 @@ const onChangeRover = (roverName) => {
     updateStore(store, {selectedRover: roverName})
 }
 
+const formatDayOfDate = (day) => {
+    switch (day % 10) {
+        case 1: return `${day}st`;
+        case 2: return `${day}nd`;
+        case 3: return `${day}rd`;
+        default: return `${day}th`;
+    }
+}
+
+const changeToFormalDate = (date) => {
+    const parts = date.split('-');
+    const monthNames =  [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ];
+    let year = parts[0];
+    let month = parts[1];
+    let day = parts[2];
+
+    return `the ${formatDayOfDate(day)} of ${monthNames[Number(month) - 1]}, ${year}`
+}
+
 const updateStore = (store, newState) => {
     store = Object.assign(store, newState)
     render(root, store)
@@ -79,8 +111,7 @@ const ImageOfTheDay = (apod) => {
 const DisplayRoverNav = (rovers, selectedRover) => {
         return (`
         ${rovers.map(e => (`
-            <div id="${e}" class="m-5 p-1 cursor-pointer rover ${selectedRover === e ? 'selected' : ''}" onClick="onChangeRover(id)">${e}</div>
-            `))}
+            <div id="${e}" class="m-1 p-1 cursor-pointer rover ${selectedRover === e ? 'selected' : ''}" onClick="onChangeRover(id)">${e}</div>`))}
         `)
 }
 
@@ -96,8 +127,8 @@ const DisplayRoverInfo = (roverName, roverInfo) => {
         <p>${roverInfo.name}</p>
         <img src="./assets/images/${roverInfo.name}.jpg" alt="">
         <div>
-            <p>launch date: ${roverInfo.launch_date}</p>
-            <p>landing date: ${roverInfo.landing_date}</p>
+            <p>launch date: ${changeToFormalDate(roverInfo.launch_date)}</p>
+            <p>landing date: ${changeToFormalDate(roverInfo.landing_date)}</p>
             <p>status: ${roverInfo.status}</p>
         </div>
     </div>
@@ -116,7 +147,7 @@ const DisplayLatestPhotos = (roverName, photos) => {
         <div class="photo-info p-1 m-1">
             <img src="${photo.img_src}" alt="">
             <p>From: ${photo.camera.full_name}</p>
-            <p>Earth date: ${photo.earth_date}</p>
+            <p>Earth date: ${changeToFormalDate(photo.earth_date)}</p>
         </div>
         `))}
     `)

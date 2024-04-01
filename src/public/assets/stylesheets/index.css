@@ -15,7 +15,7 @@ header {
   align-items: center;
   justify-content: center;
   background: #E0E0E0;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 /*-----------------------Common lib------------------------------------ */
@@ -33,7 +33,7 @@ header {
 }
 
 .p-1 {
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  padding: 0;
 }
 
 .text-white {
@@ -47,26 +47,26 @@ header {
 }
 
 .rover {
-  font-size: 2rem;
+  font-size: 1rem;
   color: #000;
   transition: 0.2s ease-in-out;
 }
 
 .rover:hover {
   background: #A0A0A0;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   color: #fff;
 }
 
 .selected {
   background: #A0A0A0;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   color: #fff;
 }
 
-#rover-info {
+/* #rover-info {
   width: 75%;
-}
+} */
 
 #rover-main {
   display: flex;
@@ -83,9 +83,9 @@ header {
   background: rgba(145, 146, 147, 0.5);
 }
 
-.rover-general img{
-  max-width: 500px;
-  max-height: 250px;
+.rover-general img {
+  width: 280px;
+  height: 140px;
 }
 
 #recent-photo {
@@ -95,18 +95,18 @@ header {
 }
 
 .photo-info {
+  width: 280px;
   background: rgba(145, 146, 147, 0.5);
 }
 
 .photo-info img {
-  width: 100%;
-  max-width: 300px;
-  max-height: 150px;
+  width: 280px;
+  height: 140px;
 }
 
 main {
   flex: 1;
-  padding: 20px;
+  padding: 0.5rem;
 }
 
 footer {
@@ -116,16 +116,88 @@ footer {
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
   /* use mobile */
+  .p-1 {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .m-1 {
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .rover {
+    font-size: 2rem;
+  }
+  .rover-general {
+    font-size: 1.5rem;
+  }
+  .rover-general img {
+    width: 500px;
+    height: 250px;
+  }
+  .photo-info {
+    width: 450px;
+    font-size: 1.5rem;
+  }
+  .photo-info img {
+    width: 450px;
+    height: 250px;
+  }
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
   /* use mobile */
+  .p-1 {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .m-1 {
+    margin: 1rem;
+  }
+  .rover {
+    font-size: 3rem;
+  }
+  .rover-general {
+    font-size: 1.5rem;
+  }
+  .rover-general img {
+    width: 800px;
+    height: 300px;
+  }
+  .photo-info {
+    width: 450px;
+    font-size: 1.5rem;
+  }
+  .photo-info img {
+    width: 450px;
+    height: 250px;
+  }
 }
 
 /* -------------------  LARGE SCREENS  -------------- */
 
 @media (min-width: 1824px) {
   /* use mobile */
+  .p-1 {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .m-1 {
+    margin: 1.5rem;
+  }
+  .rover {
+    font-size: 3rem;
+  }
+  .rover-general {
+    font-size: 1.5rem;
+  }
+  .rover-general img {
+    width: 800px;
+    height: 400px;
+  }
+  .photo-info {
+    width: 450px;
+    font-size: 1.5rem;
+  }
+  .photo-info img {
+    width: 450px;
+    height: 250px;
+  }
 }

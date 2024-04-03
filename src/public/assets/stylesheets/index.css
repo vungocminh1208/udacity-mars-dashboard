@@ -115,27 +115,34 @@ footer {
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
+
   /* use mobile */
   .p-1 {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
+
   .m-1 {
     margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
+
   .rover {
     font-size: 2rem;
   }
+
   .rover-general {
     font-size: 1.5rem;
   }
+
   .rover-general img {
     width: 500px;
     height: 250px;
   }
+
   .photo-info {
     width: 450px;
     font-size: 1.5rem;
   }
+
   .photo-info img {
     width: 450px;
     height: 250px;
@@ -145,27 +152,34 @@ footer {
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
+
   /* use mobile */
   .p-1 {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
+
   .m-1 {
     margin: 1rem;
   }
+
   .rover {
     font-size: 3rem;
   }
+
   .rover-general {
     font-size: 1.5rem;
   }
+
   .rover-general img {
     width: 800px;
     height: 300px;
   }
+
   .photo-info {
     width: 450px;
     font-size: 1.5rem;
   }
+
   .photo-info img {
     width: 450px;
     height: 250px;
@@ -175,27 +189,34 @@ footer {
 /* -------------------  LARGE SCREENS  -------------- */
 
 @media (min-width: 1824px) {
+
   /* use mobile */
   .p-1 {
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
+
   .m-1 {
     margin: 1.5rem;
   }
+
   .rover {
     font-size: 3rem;
   }
+
   .rover-general {
     font-size: 1.5rem;
   }
+
   .rover-general img {
     width: 800px;
     height: 400px;
   }
+
   .photo-info {
     width: 450px;
     font-size: 1.5rem;
   }
+
   .photo-info img {
     width: 450px;
     height: 250px;
